@@ -1,3 +1,5 @@
+import Sequelize from 'sequelize'
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const SteamGame = sequelize.define('SteamGame', {
