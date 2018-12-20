@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const pkg = require('../../package')
+const pkg = require('../../package');
 
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 

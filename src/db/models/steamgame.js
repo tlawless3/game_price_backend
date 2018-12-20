@@ -1,3 +1,5 @@
+const Sequelize = require('sequelize');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const SteamGame = sequelize.define('SteamGame', {
