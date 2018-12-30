@@ -4,6 +4,7 @@ import {
 } from './db/models/index'
 import services from './services/index'
 import dotenv from 'dotenv'
+import path from 'path'
 dotenv.config()
 
 const app = express();
@@ -17,6 +18,9 @@ app.use('/populateSteamGames', (req, res, next) => {
     msg: 'working'
   })
 })
+
+app.use(express.static(path.join(__dirname, '..', 'assets')))
+
 
 app.listen(PORT, () => {
   console.log(`Server is running at PORT ${PORT}`);

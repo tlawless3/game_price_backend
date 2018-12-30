@@ -10,7 +10,7 @@ const fetchAndPopulate = async (db) => {
 
 const fetchSteamGames = async () => {
   try {
-    const steamGamesList = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/')
+    const steamGamesList = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=STEAMKEY&format=json')
     return steamGamesList
   } catch (error) {
     console.log(error);

@@ -16,7 +16,7 @@ app.get('/:query', (req, res, next) => {
       }
     }
   }).then(response => {
-    console.log(response)
+    res.send(response)
   })
 })
 
