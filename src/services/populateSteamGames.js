@@ -17,8 +17,11 @@ const fetchSteamGames = async () => {
   }
 }
 
-const populateDb = (games) => {
+const populateDb = async (games) => {
   try {
+    await SteamGame.sync({
+      force: true
+    })
     games.map(game => {
       SteamGame.build({
         name: game.name,
