@@ -25,7 +25,7 @@ app.use('/populateSteamGames', (req, res, next) => {
   })
 })
 
-app.use(express.static(path.join(__dirname, '..', 'assets')))
+app.use(express.static(path.join(__dirname, 'assets')))
 
 
 app.listen(PORT, () => {
