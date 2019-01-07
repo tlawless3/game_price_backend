@@ -18,15 +18,9 @@ app.use(cors({
 
 app.use('/api/v1.0.0', require('./api'))
 
-app.use('/populateSteamGames', (req, res, next) => {
-  services.populateSteamGames(db)
-  return res.json({
-    msg: 'working'
-  })
-})
+app.use(express.static(path.join(__dirname, 'assets')))
 
-app.use(express.static(path.join(__dirname, '..', 'assets')))
-
+services.populateSteamGames(db)
 
 app.listen(PORT, () => {
   console.log(`Server is running at PORT ${PORT}`);
