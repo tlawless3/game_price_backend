@@ -4,13 +4,11 @@ import {
 } from '../db/models'
 
 const fetchAndPopulate = async () => {
-  await SteamGame.sync()
-  let gameData = await SteamGame.findOne().then(() => null).catch((error) => {
-    console.log(error)
-  })
+  let gameData = await SteamGame.findOne()
   const secondsInDay = 86400
-  const lastUpdate = gameData ? (gameData.createdAt - new Date()) * 1000 : 0
+  const lastUpdate = gameData ? (new Date() - gameData.createdAt) / 1000 : 0
   if (!gameData || lastUpdate > secondsInDay) {
+    await SteamGame.sync()
     const steamGamesList = await fetchSteamGames()
     populateDb(steamGamesList.data.applist.apps, steamGamesList.data.applist.apps.length)
   }
