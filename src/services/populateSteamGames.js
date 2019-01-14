@@ -1,13 +1,19 @@
 import axios from 'axios'
-var async = require('async');
 import {
   SteamGame
 } from '../db/models'
 
-const fetchAndPopulate = async (db) => {
-  const steamGamesList = await fetchSteamGames()
-  console.log(steamGamesList)
-  populateDb(steamGamesList.data.applist.apps, steamGamesList.data.applist.apps.length)
+const fetchAndPopulate = async () => {
+  await SteamGame.sync()
+  let gameData = await SteamGame.findOne().catch((error) => {
+    console.log(error)
+  })
+  const secondsInDay = 86400
+  const lastUpdate = gameData ? (gameData.createdAt - new Date()) * 1000 : 0
+  if (!gameData || lastUpdate > secondsInDay) {
+    const steamGamesList = await fetchSteamGames()
+    populateDb(steamGamesList.data.applist.apps, steamGamesList.data.applist.apps.length)
+  }
 }
 
 const fetchSteamGames = async () => {
