@@ -5,7 +5,7 @@ import {
 
 const fetchAndPopulate = async () => {
   await SteamGame.sync()
-  let gameData = await SteamGame.findOne().catch((error) => {
+  let gameData = await SteamGame.findOne().then(() => null).catch((error) => {
     console.log(error)
   })
   const secondsInDay = 86400
