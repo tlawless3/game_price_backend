@@ -2,8 +2,7 @@
   "main": "src/app.js",
   "name": "game_price",
   "scripts": {
-    "start": "node src/app.js",
-    "start-dev": "nodemon src/app.js --exec babel-node --presets env,stage-2",
+    "start": "nodemon src/app.js --exec babel-node --presets env,stage-2",
     "build": "babel src -d dist --source-maps",
     "serve": "node dist/app.js"
   },
@@ -16,6 +15,7 @@
     "nodemon": "^1.18.9"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "async": "^2.6.1",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
@@ -23,6 +23,7 @@
     "express": "^4.16.4",
     "pg": "^7.7.1",
     "pg-hstore": "^2.3.2",
+    "regenerator-runtime": "^0.13.1",
     "sequelize": "^4.42.0",
     "sequelize-cli": "^5.4.0"
   },
