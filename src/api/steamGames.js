@@ -1,24 +1,14 @@
 import express from 'express'
-import Sequelize from 'sequelize'
 import axios from 'axios'
-import {
-  SteamGame
-} from '../db/models'
+import appid from 'appid'
 
-const Op = Sequelize.Op;
 const app = express()
 
-app.get('/name/:query', (req, res, next) => {
+app.get('/name/:query', async (req, res, next) => {
   const query = req.params.query
-  SteamGame.findAll({
-    where: {
-      name: {
-        [Op.iLike]: `%${query}%`
-      }
-    }
-  }).then(response => {
-    res.json(response)
-  })
+  const regex = new RegExp(query, 'i')
+  let gameList = await appid(regex)
+  res.json(gameList)
 })
 
 app.get('/appid/:query', async (req, res, next) => {
